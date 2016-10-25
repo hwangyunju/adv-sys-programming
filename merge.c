@@ -70,10 +70,10 @@ leave0:
 int
 readaline_and_out(FILE *fin, FILE *fout)
 {    
-    char ch;
+    char ch,temp;
     char arr[200];
     int count=0;
-
+    int i;
     do {
         if ((ch = fgetc(fin)) == EOF) {
             if (!count)
@@ -83,24 +83,27 @@ readaline_and_out(FILE *fin, FILE *fout)
                 break;
             }
         }
-
 	arr[count]=ch;
         count++;
     } while (ch != 0x0a);
-    reverse(arr,count-2);
-    fputs(arr,fout);
+//    reverse(arr,count);
+    for(i=0;i<count;i++){
+	fputc(arr[count-1-i],fout);
+    }
+
     return 0;
 }
+
 
 void reverse(char str[],int size)
 {
     int i;
     char temp;
-//    int len = size-2;
+    int len = size-2;
 
-    for(i=0; i<size/2; i++){
+    for(i=0; i<len/2; i++){
 	temp = str[i];
-	str[i] = str[size-i];
-	str[size-i]=temp;
+	str[i] = str[len-i];
+	str[len-i]=temp;
     }
 }
