@@ -4,6 +4,7 @@
 #include <sys/time.h>
 
 int readaline_and_out(FILE *fin, FILE *fout);
+void reverse(char str[],int size);
 
 int
 main(int argc, char *argv[])
@@ -69,7 +70,10 @@ leave0:
 int
 readaline_and_out(FILE *fin, FILE *fout)
 {    
-    int ch, count = 0;
+    char ch,temp;
+    char arr[200];
+    int i=0;
+    int count=0;
 
     do {
         if ((ch = fgetc(fin)) == EOF) {
@@ -80,9 +84,31 @@ readaline_and_out(FILE *fin, FILE *fout)
                 break;
             }
         }
-        fputc(ch, fout);
+	arr[count]=ch;
         count++;
     } while (ch != 0x0a);
+    arr[count]='\0';
+    int n = count;
+    for(n;n>=0;n--){
+	temp = arr[n];
+	fputc(temp,fout);
+    }
+
+
+
+//    reverse(arr,count);
+//    fputs(arr, fout);
     return 0;
+}
+
+void reverse(char str[],int size)
+{
+    int i;
+    char temp;
+    for(i=0; i<size/2; i++){
+	temp = str[i];
+	str[i] = str[size-1-i];
+	str[size-1-i]=temp;
+    }
 }
 
