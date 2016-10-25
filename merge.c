@@ -70,9 +70,8 @@ leave0:
 int
 readaline_and_out(FILE *fin, FILE *fout)
 {    
-    char ch,temp;
+    char ch;
     char arr[200];
-    int i=0;
     int count=0;
 
     do {
@@ -87,11 +86,8 @@ readaline_and_out(FILE *fin, FILE *fout)
 
 	arr[count]=ch;
         count++;
-    } 
-        arr[count]=ch;
-        count++;
     } while (ch != 0x0a);
-    reverse(arr,count);
+    reverse(arr,count-2);
     fputs(arr,fout);
     return 0;
 }
@@ -100,11 +96,11 @@ void reverse(char str[],int size)
 {
     int i;
     char temp;
+//    int len = size-2;
 
     for(i=0; i<size/2; i++){
 	temp = str[i];
-	str[i] = str[size-1-i];
-	str[size-1-i]=temp;
+	str[i] = str[size-i];
+	str[size-i]=temp;
     }
 }
-
