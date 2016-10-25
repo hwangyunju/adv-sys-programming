@@ -84,20 +84,15 @@ readaline_and_out(FILE *fin, FILE *fout)
                 break;
             }
         }
+
 	arr[count]=ch;
         count++;
+    } 
+        arr[count]=ch;
+        count++;
     } while (ch != 0x0a);
-    arr[count]='\0';
-    int n = count;
-    for(n;n>=0;n--){
-	temp = arr[n];
-	fputc(temp,fout);
-    }
-
-
-
-//    reverse(arr,count);
-//    fputs(arr, fout);
+    reverse(arr,count);
+    fputs(arr,fout);
     return 0;
 }
 
@@ -105,6 +100,7 @@ void reverse(char str[],int size)
 {
     int i;
     char temp;
+
     for(i=0; i<size/2; i++){
 	temp = str[i];
 	str[i] = str[size-1-i];
