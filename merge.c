@@ -83,27 +83,20 @@ int main(int argc, char *argv[])
  
     gettimeofday(&before, NULL);
 
-
-    {
-            {
-                do {
-                    if (!eof1) {
-			if (!readaline_and_out(addr1, addr3, &cursor1, &cursor_out)){
-                          line1++; lineout++;
-                        } else
-                            eof1 = 1;
-                    }
-                    if (!eof2) {
-			if (!readaline_and_out(addr2, addr3, &cursor2, &cursor_out)){
-                            line2++; lineout++;
-                      } else
-                            eof2 = 1;
-                    }
-		} while (!eof1 || !eof2);
-            }
-
-        
-    }
+    do {
+	if (!eof1) {
+	    if (!readaline_and_out(addr1, addr3, &cursor1, &cursor_out)){
+		line1++; lineout++;
+	    } else
+		eof1 = 1;
+	}
+	if (!eof2) {
+	    if (!readaline_and_out(addr2, addr3, &cursor2, &cursor_out)){
+		line2++; lineout++;
+	    } else
+		eof2 = 1;
+	}
+    } while (!eof1 || !eof2);
 
     gettimeofday(&after, NULL);
     
